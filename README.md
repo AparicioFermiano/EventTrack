@@ -37,7 +37,7 @@ CREATE DATABASE et;
 
 - Instale as dependências do projeto:
 ```
-$ pip install -r requirements.txt
+$ npm install
 ```
 
 - No arquivo do servidor (app.js), altere as variáveis de conexão do banco de dados (user, host, database, password, port) de acordo com as configurações do seu ambiente.
