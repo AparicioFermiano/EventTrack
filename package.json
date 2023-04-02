@@ -1,5 +1,15 @@
 {
   "dependencies": {
     "pg": "^8.10.0"
-  }
+  },
+  "name": "eventtrack",
+  "description": "- Arduino Uno;\r - Shield Ethernet;\r - Node.js;\r - PostgreSQL;\r - Funcionalidades;\r - Leitura de QR Code para validação de ingressos;\r - Comunicação com aplicação web por meio de API;\r - Display LCD para exibição de informações;\r - Leitor de cartões RFID para expansão de funcionalidades.",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
 }
