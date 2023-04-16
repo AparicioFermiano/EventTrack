@@ -1,1 +1,32 @@
 /* You can add global styles to this file, and also import other style files */
+.bg-primario{
+    background-color: #9068E6 !important;
+    color: white;
+}
+
+.cor-primario{
+    color: #9068E6 !important;
+}
+
+.bg-secundario{
+    background-color: #9F72FE !important;
+    color: white;
+}
+
+.cor-secudario{
+    color: #6F50B3 !important;
+}
+
+.btn-acesso{
+    background-color: #EBE5FC;
+    color: #6F50B3;
+}
+
+.btn-acesso:hover{
+    background-color: #c3bed1;
+    color: #9068E6;
+}
+
+svg{
+    width: 180px !important;
+}

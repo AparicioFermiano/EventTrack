@@ -1,0 +1,29 @@
+<div class="row">
+    <div class="col-12 my-3 px-5">
+        <h2>
+            Eventos próximos
+        </h2>
+    </div>
+    <div class="col-12 mb-3 px-5 d-flex align-items-center justify-content-center">
+        <div class="input-group mb-3">
+            <input class="form-control" placeholder="Pesquise o evento que procura." type="text" name="pesquisa" id="pesquisa">
+            <button type="button" class="btn bg-secundario">Pesquisar</button>
+        </div>
+        <p class="form-text"></p>
+    </div>
+    <div class="col-12 my-3 px-5 d-flex align-items-center justify-content-center" *ngFor="let evento of listaEventos">
+        <div class="col-md-2 d-flex align-items-center justify-content-end">
+            <img src="{{evento.imagem}}" class="rounded img-thumbnail imagem-evento" alt="...">
+        </div>
+        <div class="col px-3">
+            <h3>{{evento.nome}}</h3>
+            <p class="m-0"><strong>Data</strong>: {{evento.data}}</p>
+            <p class="m-0"><strong>Horário</strong>: {{evento.horario}}</p>
+            <p class="m-0"><strong>Local</strong>: {{evento.local}}</p>
+        </div>
+        <div class="col-2">
+            <h3>R$ {{evento.preco}},00</h3>
+            <button type="button" class="btn bg-primario px-5">Comprar</button>
+        </div>
+    </div>
+</div>

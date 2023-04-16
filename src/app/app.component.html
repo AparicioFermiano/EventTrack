@@ -1,17 +1,9 @@
-<style>
-  .mensagem{
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    padding: 0;
-    height: 100vh;
-    width: 100%;
-  }
-</style>
-<div class="mensagem">
-  <h2 style="margin: 0;">Bem vindo ao</h2>
-  <img style="width: 250px;" src="../assets/eventtracker-cortado.png" alt="logo">
-  <p>site em construção</p>
-  <p></p>
+<app-header *ngIf="showHeader"></app-header>
+
+<div class="row m-0">
+  <div class="col-12">
+    <div class="container">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
 </div>
