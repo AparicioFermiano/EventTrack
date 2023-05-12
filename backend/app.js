@@ -1,11 +1,16 @@
 const { Pool } = require('pg');
+const express = require('express');
+var cors = require('cors');
+
+const app = express();
+const port = 8080;
 
 // Configuração da conexão com o banco de dados
 const pool = new Pool({
   user: 'postgres',
   host: 'localhost',
   database: 'et',
-  password: 'tester',
+  password: '123',
   port: 5432,
 });
 
@@ -18,4 +23,9 @@ pool.query('SELECT NOW()', (err, res) => {
   }
   // Encerra a conexão com o banco de dados
   pool.end();
+});
+
+app.use(cors())
+app.listen(port, () => {
+  console.log('Rodando na porta 8080');
 });
