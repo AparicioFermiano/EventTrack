@@ -10,17 +10,18 @@
                         <h5 class="mb-3 fw-semibold">Faça seu login</h5>
                     </div>
                 </div>
-                <form action="">
+                <p>{{ message }}</p>
+                <form (ngSubmit)="submitForm()">
                     <div class="col-12 d-flex align-items-center justify-content-center">
                         <div class="mb-3" style="width: 55%;">
                             <label for="email" class="form-label">E-mail</label>
-                            <input type="email" class="form-control" id="email">
+                            <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email">
                         </div>
                     </div>
                     <div class="col-12 d-flex align-items-center justify-content-center">
                         <div class="mb-3" style="width: 55%;">
                             <label for="senha" class="form-label">Senha</label>
-                            <input type="password" class="form-control" id="senha">
+                            <input type="password" class="form-control" id="senha" name="password" [(ngModel)]="password">
                         </div>
                     </div>
                     <div class="col-12 d-flex align-items-center justify-content-center">
