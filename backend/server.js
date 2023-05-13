@@ -4,7 +4,9 @@ const express = require('express');
 var cors = require('cors');
 
 const app = express();
+
 const port = 3000;
+
 
 // Configuração da conexão com o banco de dados
 const pool = new Pool({
@@ -34,4 +36,5 @@ app.use('/login', loginRouter);
 app.use(cors())
 app.listen(port, () => {
   console.log('Rodando na porta 3000');
+
 });
