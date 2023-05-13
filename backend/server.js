@@ -1,9 +1,12 @@
+//const bodyParser = require('body-parser');
 const { Pool } = require('pg');
 const express = require('express');
 var cors = require('cors');
 
 const app = express();
-const port = 8080;
+
+const port = 3000;
+
 
 // Configuração da conexão com o banco de dados
 const pool = new Pool({
@@ -21,11 +24,17 @@ pool.query('SELECT NOW()', (err, res) => {
   } else {
     console.log('Conexão com o banco de dados bem-sucedida');
   }
-  // Encerra a conexão com o banco de dados
-  pool.end();
 });
+
+// Rotas
+const loginRouter = require('./login');
+//const perfilRouter = require('./routes/perfil');
+
+app.use('/login', loginRouter);
+//app.use('/perfil', perfilRouter);
 
 app.use(cors())
 app.listen(port, () => {
-  console.log('Rodando na porta 8080');
+  console.log('Rodando na porta 3000');
+
 });
