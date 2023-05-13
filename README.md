@@ -50,3 +50,15 @@ const pool = new Pool({
   port: '<Sua porta>',
 });
 ```
+
+Para iniciar o Node, faça:
+
+```
+$ node backend/server.js
+```
+
+Para iniciar o Angular, faça:
+
+```
+$ ng serve
+```
