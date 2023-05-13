@@ -27,10 +27,12 @@ pool.query('SELECT NOW()', (err, res) => {
 });
 
 // Rotas
-const loginRouter = require('./login');
+const loginRouter = require('./routes/login');
+const eventoRouter = require('./routes/eventos');
 //const perfilRouter = require('./routes/perfil');
 
 app.use('/login', loginRouter);
+app.use('/eventos', eventoRouter);
 //app.use('/perfil', perfilRouter);
 
 app.use(cors())
