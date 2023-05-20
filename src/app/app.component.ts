@@ -14,7 +14,7 @@ export class AppComponent {
   constructor(private router: Router){
     router.events.subscribe((val) => {
       if(val instanceof NavigationEnd){
-        if(val.url === "/login"){
+        if(val.url === "/login" || val.url === "/cadastro-usuario"){
           this.showHeader = false;
         }else{
           this.showHeader = true;

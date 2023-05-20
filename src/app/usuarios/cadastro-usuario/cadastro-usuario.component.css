@@ -1,0 +1,38 @@
+.card{
+    border: 1px solid #9068E6;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px #9068E6;
+    width: 70%;
+    height: 100%;
+    padding: 2rem;
+}
+
+body{
+    margin: 0 !important;
+    padding: 0 !important;
+    
+}
+
+.inputs{
+    background-color: #FFFFFF;
+    border: 1px solid #9068E6;
+    border-radius: 9px;
+    padding: 10px;
+}
+
+.inputs:focus{
+    border: 1px solid #9068E6;
+    box-shadow: #9068E6;
+
+}
+
+.adm{
+    margin: 0.5rem;
+    accent-color: #9068E6;
+}
+
+
+.btn{
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+}

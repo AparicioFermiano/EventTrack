@@ -1,0 +1,127 @@
+<div class="row vh-100 gx-0">
+    <div class="col-12 d-flex align-items-center justify-content-center">
+        <div class="card py-4">
+            <div class="row">
+
+                <div class="col-12 my-4 d-flex align-items-center justify-content-center">
+                    <img src="../../assets/eventtracker-cortado.svg" alt="logo" width="230">
+                </div>
+
+                <div class="col-12 my-4 d-flex text-center justify-content-center">
+                    <div style="width: 55%;">
+                        <h5 class="mb-3 fw-semibold">Já tem cadastro?</h5>
+
+                        <button class="btn bg-primario px-5" routerLink="/login">Fazer login</button>
+                    </div>
+                </div>
+
+                <div class="col-12 my-4 align-items-center justify-content-center">
+                    <hr>
+                </div>
+
+                <div class="col-12 my-4 text-center fw-semibold">
+                    <h5>Se não, faça seu cadastro</h5>
+                </div>
+
+                <div class="col-6 mb-4 my-4">
+                    <label class="form-label" for="nome">Nome</label>
+                    <input required pattern="^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]+$" minlength="2" type="text"
+                        placeholder="ex: Allan" formControlName="nome" class="form-control inputs" name="nome"
+                        id="nome">
+                </div>
+
+                <div class="col-6 mb-4 my-4">
+                    <label class="form-label" for="sobrenome">Sobrenome</label>
+                    <input required pattern="^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ'\s]+$" minlength="2" type="text"
+                        placeholder="ex: Turing" formControlName="sobrenome" class="form-control inputs"
+                        name="sobrenome" id="sobrenome">
+                </div>
+
+
+                <div class="col-6 mb-4">
+                    <label class="form-label" for="cpf">CPF</label>
+                    <input required pattern="[0-9.-]+" minlength="14" maxlength="14" type="text"
+                        placeholder="ex: 123.456.789-10" formControlName="cpf" class="form-control inputs" name="cpf"
+                        id="cpf">
+                </div>
+
+                <div class="col-6 mb-4">
+                    <label class="form-label" for="idade">Idade</label>
+                    <input required pattern="[0-9]+" minlength="2" maxlength="3" type="text" placeholder="ex: 30"
+                        class="form-control inputs" name="idade" id="idade">
+                </div>
+
+                <div class="col-12 mb-4">
+                    <label class="form-label" for="email">E-mail</label>
+                    <input required pattern="^[aA-zZ0-9._%+-]+@[aA-zZ0-9.-]+[aA-zZ]{2,4}" type="text"
+                        placeholder="ex: email@gmail.com" class="form-control inputs" name="email" id="email">
+                </div>
+
+                <div class="col-12 mb-4">
+                    <label class="form-label" for="senha">Senha</label>
+                    <input required pattern="[aA-zZ0-9()-=@!#$%&*?]+" type="password" placeholder="*****"
+                        class="form-control inputs" name="senha" id="senha">
+                </div>
+
+                <div class="col-12 mb-5">
+                    <label class="form-label" for="confirmarSenha">Confirme sua senha</label>
+                    <input required pattern="[aA-zZ0-9()-=@!#$%&*?]+" type="password" placeholder="*****"
+                        class="form-control inputs" name="confirmarSenha" id="confirmarSenha">
+                </div>
+
+                <div class="col-12 mb-4">
+                    <input type="checkbox" id="adm" name="adm" class="adm" [(ngModel)]="this.mostrarAdm"
+                        (click)="this.showHide">
+                    <label for="adm">Sou administrador</label>
+                </div>
+
+                <div class="row" *ngIf="this.mostrarAdm">
+                    <div class="col-12 mb-4">
+                        <label class="form-label" for="endereco">Endereço</label>
+                        <input required pattern="[aA-zZ0-9áàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ()-]+" type="text"
+                            placeholder="ex: SP, Bela Vista, Avenida Angélica" class="form-control inputs"
+                            name="endereco" id="endereco">
+                    </div>
+
+                    <div class="col-3 mb-4">
+                        <label class="form-label" for="numero">Número</label>
+                        <input required pattern="[0-9]+" type="text" placeholder="ex: 2565" class="form-control inputs"
+                            name="numero" id="numero">
+                    </div>
+
+                    <div class="col-9 mb-4">
+                        <label class="form-label" for="complemento">Complemento</label>
+                        <input required pattern="[aA-zZ0-9áàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ()-]+" type="text"
+                            placeholder="ex: Prédio da USJT" class="form-control inputs" name="complemento"
+                            id="complemento">
+                    </div>
+
+                    <div class="col-12 mb-4">
+                        <label class="form-label" for="cep">CEP</label>
+                        <input required pattern="[0-9.-]+" type="text" placeholder="ex: 01227"
+                            class="form-control inputs" name="cep" id="cep">
+                    </div>
+
+                    <div class="col-12 mb-4">
+                        <label class="form-label" for="cnpj">CNPJ</label>
+                        <input required pattern="[0-9()./-]+" minlength="18" maxlength="18" type="text"
+                            placeholder="ex: 42.317.149/0001-49" class="form-control inputs" name="cnpj" id="cnpj">
+                    </div>
+
+                    <div class="col-12 mb-4">
+                        <label class="form-label" for="razao">Razão social</label>
+                        <input required pattern="[aA-zZ0-9áàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ()-]+" type="text"
+                            placeholder="ex: Amc - Servicos Educacionais Ltda." class="form-control inputs" name="razao"
+                            id="razao">
+                    </div>
+                </div>
+
+                <div class="col-12 d-flex text-end justify-content-end">
+                    <div style="width: 55%;">
+                        <button class="btn bg-primario px-5">Cadastrar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
