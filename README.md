@@ -34,6 +34,7 @@ $ pip install npm
 ```sql
 CREATE DATABASE et;
 ```
+Após a criação do banco de dados, rode o arquivo de querys para poder criar as tabelas necessárias juntamente com alguns dados testes, o arquivo se encontra em "backend/query_tables.sql".
 
 - Instale as dependências do projeto:
 ```
