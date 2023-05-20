@@ -49,7 +49,8 @@ CREATE TABLE ingressos (
   hora_entrada DATE,
   hora_saida DATE,
   valor_consumido NUMERIC(5,2),
-  pago_consumo BOOLEAN DEFAULT FALSE
+  pago_consumo BOOLEAN DEFAULT FALSE,
+  qr_code VARCHAR('30') UNIQUE
 );
 
 INSERT INTO clientes(adm, senha, nome_completo, cpf, data_nasc, email)
@@ -100,18 +101,6 @@ VALUES (
   18
 );
 
-INSERT INTO eventos(id_administrador, id_endereco, nome, dt_inicio, dt_fim, preco, descricao, idade_minima)
-VALUES (
-  1,
-  1,
-  'Festa TOP',
-  '2023-05-20 20:00:00',
-  '2023-06-20 23:59:00',
-  80.00,
-  'Festa em Balada de Sao Paulo com duração de 2 dias',
-  18
-);
-
 INSERT INTO ingressos(id_evento, id_cliente, hora_entrada, hora_saida, valor_consumido, pago_consumo)
 VALUES (
   1,
@@ -119,7 +108,8 @@ VALUES (
   '2023-05-20 21:00:00',
   '2023-06-20 19:00:0',
   100.00,
-  TRUE
+  TRUE,
+  'valor_qr_code'
 );
 
 SELECT * FROM clientes;
