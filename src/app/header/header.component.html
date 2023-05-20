@@ -1,4 +1,4 @@
-<nav class="nav bg-primario py-2">
+<!-- <nav class="nav bg-primario py-2">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -13,5 +13,31 @@
             </div>
         </div>
     </div>
+</nav> -->
+<div>
 
-</nav>
+    <nav class="nav bg-primario py-2">
+        <div class="navbar-logado">
+            <a href="#" class="navbar-brand">
+                <img src="../../assets/eventtracker-cortado.svg" alt="logo" width="180">
+            </a>
+        </div>
+    </nav>
+    <div class="sidebar" [ngClass]="{'open': this.sidebarAberto ===  true}">
+        <div class="sidebar-header">
+            <p>Menu</p>
+            <i id="botaoSidebar" class="bi bi-arrow-right-short" (click)="abrirFecharSidebar()"></i>
+        </div>
+        <div class="sidebar-options">
+            <a href="#" class="option" routerLink="" [ngClass]="{'active': this.pagina === '/'}">Buscar eventos</a>
+            <a href="#" class="option" routerLink="meus-eventos" [ngClass]="{'active': this.pagina === '/meus-dados'}">Meus dados</a>
+            <a href="#" class="option" routerLink="meus-ingressos" [ngClass]="{'active': this.pagina === '/meus-ingressos'}">Meus ingressos</a>
+            <a href="#" class="option" routerLink="meus-relatorios" [ngClass]="{'active': this.pagina === '/meus-relatorios'}">Meus relatórios</a>
+            <a href="#" class="option" routerLink="cadastro-eventos" [ngClass]="{'active': this.pagina === '/cadastro-eventos'}">Cadastrar eventos</a>
+            <a href="#" class="option" routerLink="meus-eventos" [ngClass]="{'active': this.pagina === '/meus-eventos'}">Meus eventos</a>
+        </div>
+        <div class="sidebar-footer">
+
+        </div>
+    </div>
+</div>
