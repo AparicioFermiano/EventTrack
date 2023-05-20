@@ -66,3 +66,21 @@ svg{
 .active{
     font-weight: 700;
 }
+
+.sidebar-footer{
+    position: absolute;
+    bottom: 0;
+}
+
+.btn-sair{
+    color: #6610F2;
+    background-color: white;
+    border: 1px solid #6610F2;
+    margin: 20px;
+    width: 140px !important;
+}
+
+.btn-sair:hover{
+    color: #6610F2;
+    background-color: rgb(223, 222, 222);
+}

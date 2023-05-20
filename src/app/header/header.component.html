@@ -1,4 +1,4 @@
-<nav class="nav bg-primario py-2">
+<nav class="nav bg-primario py-2" *ngIf="this.dadosUsuario.logado === false">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -13,7 +13,7 @@
         </div>
     </div>
 </nav>
-<!-- <div>
+<div *ngIf="this.dadosUsuario.logado === true">
 
     <nav class="nav bg-primario py-2">
         <div class="navbar-logado">
@@ -31,12 +31,12 @@
             <a href="#" class="option" routerLink="" [ngClass]="{'active': this.pagina === '/'}">Buscar eventos</a>
             <a href="#" class="option" routerLink="meus-eventos" [ngClass]="{'active': this.pagina === '/meus-dados'}">Meus dados</a>
             <a href="#" class="option" routerLink="meus-ingressos" [ngClass]="{'active': this.pagina === '/meus-ingressos'}">Meus ingressos</a>
-            <a href="#" class="option" routerLink="meus-relatorios" [ngClass]="{'active': this.pagina === '/meus-relatorios'}">Meus relatórios</a>
-            <a href="#" class="option" routerLink="cadastro-eventos" [ngClass]="{'active': this.pagina === '/cadastro-eventos'}">Cadastrar eventos</a>
-            <a href="#" class="option" routerLink="meus-eventos" [ngClass]="{'active': this.pagina === '/meus-eventos'}">Meus eventos</a>
+            <a href="#" class="option" routerLink="meus-relatorios" *ngIf="this.dadosUsuario.codigoUsuario === 2" [ngClass]="{'active': this.pagina === '/meus-relatorios'}">Meus relatórios</a>
+            <a href="#" class="option" routerLink="cadastro-eventos" *ngIf="this.dadosUsuario.codigoUsuario === 2" [ngClass]="{'active': this.pagina === '/cadastro-eventos'}">Cadastrar eventos</a>
+            <a href="#" class="option" routerLink="meus-eventos" *ngIf="this.dadosUsuario.codigoUsuario === 2" [ngClass]="{'active': this.pagina === '/meus-eventos'}">Meus eventos</a>
         </div>
         <div class="sidebar-footer">
-
+            <button type="button" class="btn btn-sair fw-semibold" (click)="this.deslogar()">Sair</button>
         </div>
     </div>
-</div> -->
+</div>

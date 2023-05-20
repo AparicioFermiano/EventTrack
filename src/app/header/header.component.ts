@@ -1,18 +1,24 @@
-import { Component } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
+import { LoginService } from '../services/login.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnInit {
 
   sidebarAberto: boolean = false
   botao: any = {}
   pagina: string = ""
+  dadosUsuario: any;
 
-  constructor(private router: Router){
+  ngOnInit() {
+    this.dadosUsuario = this.loginService.getUsuario()
+  }
+
+  constructor(private router: Router, private loginService: LoginService){
     router.events.subscribe((val) => {
       if(val instanceof NavigationEnd){
         this.pagina = val.url
@@ -30,6 +36,15 @@ export class HeaderComponent {
       this.botao.style.transform = "rotate(-180deg)"
       this.sidebarAberto = true;
     }
+  }
+
+  deslogar = () => {
+    this.loginService.setUsuario({
+      logado: false,
+      codigoUsuario: 0
+    })
+    this.router.navigate(['/'])
+    window.location.reload()
   }
 
 }

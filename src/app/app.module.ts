@@ -9,6 +9,7 @@ import { LoginUsuarioComponent } from './login-usuario/login-usuario.component';
 import { EventosModule } from './eventos/eventos.module';
 import { CadastroUsuarioComponent } from './usuarios/cadastro-usuario/cadastro-usuario.component';
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { LoginService } from './services/login.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,9 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [],
+  providers: [
+    LoginService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
