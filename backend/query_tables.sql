@@ -120,7 +120,7 @@ VALUES (
   'Festa infantil',
   '2023-12-16 15:00:00',
   '2023-12-16 23:59:00',
-  50.00,
+  15.00,
   'Festa infantil em Sao Paulo com duração de 1 dia',
   0
 );
