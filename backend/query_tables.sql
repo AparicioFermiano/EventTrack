@@ -49,7 +49,7 @@ CREATE TABLE ingressos (
   hora_saida TIMESTAMP,
   valor_consumido NUMERIC(5,2),
   pago_consumo BOOLEAN DEFAULT FALSE,
-  qr_code VARCHAR(30) UNIQUE
+  qr_code TEXT UNIQUE
 );
 
 INSERT INTO clientes(adm, senha, nome_completo, cpf, data_nasc, email)
@@ -133,7 +133,7 @@ VALUES (
   '2023-05-21 19:00:0',
   100.00,
   TRUE,
-  'valor_qr_code1'
+  NULL
 ),(
   2,
   2,
@@ -141,7 +141,7 @@ VALUES (
   '2023-06-04 19:00:0',
   230.00,
   FALSE,
-  'valor_qr_code2'
+  NULL
 ),(
   3,
   1,
@@ -149,7 +149,7 @@ VALUES (
   '2023-12-16 23:59:00',
   000.00,
   TRUE,
-  'valor_qr_code3'
+  NULL
 );
 
 SELECT * FROM clientes;
