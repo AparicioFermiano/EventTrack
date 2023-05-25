@@ -29,14 +29,13 @@ export class LoginUsuarioComponent {
   }
 
   submitForm() {
-    console.log(this.login.valid)
     if (this.login.valid) {
       const body = { email: this.login.get('email')?.value, password: this.login.get('password')?.value };
       return this.http.post('http://localhost:3000/login/validar_login', body).subscribe(
         (res: any) => {
           if(res.status == 200){
-            this.message = 'Login com sucesso';
-            this.router.navigate(['/']);
+            const redirectRoute = res.redirectRoute;
+            this.router.navigate([redirectRoute]);
           } else {
             this.message = 'E-mail ou senha inválidos';
           }

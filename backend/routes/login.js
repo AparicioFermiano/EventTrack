@@ -23,13 +23,16 @@ router.post('/validar_login', async (req, res) => {
   try {
     const result = await pool.query('SELECT * FROM clientes WHERE email = $1 AND senha = $2', [email, password]);
     if (result.rows.length === 1) {
-      res.json({ status: 200, message: 'Login realizado com sucesso' });
+      req.session.userId = result.rows[0].id_cliente;
+      console.error(req.session.userId)
+      res.json({ status: 200, redirectRoute: '/' });
     } else {
       res.json({ status: 401, message: 'E-mail ou senha inválida' });
     }
   } catch (error) {
-    res.status(500).json({ message: 'Erro no servidor. Desculpe!' });
+     res.status(500).json({ message: 'Erro no servidor. Desculpe!' });
   }
+  
 });
 
-  module.exports = router;
+module.exports = router;

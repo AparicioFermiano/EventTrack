@@ -1,12 +1,11 @@
-//const bodyParser = require('body-parser');
 const { Pool } = require('pg');
+const sessions = require('express-session');
 const express = require('express');
-var cors = require('cors');
-
+const cors = require('cors');
+const bodyParser = require('body-parser');
+const cookieParser = require("cookie-parser");
 const app = express();
-
 const port = 3000;
-
 
 // Configuração da conexão com o banco de dados
 const pool = new Pool({
@@ -26,19 +25,42 @@ pool.query('SELECT NOW()', (err, res) => {
   }
 });
 
+// Configuração do middleware express-session
+const oneDay = 1000 * 60 * 60 * 24;
+app.use(sessions({
+  secret: "thisismysecrctekeyfhrgfgrfrty84fwir767",
+  saveUninitialized:true,
+  cookie: { maxAge: oneDay },
+  resave: false 
+}));
+
+app.use(cookieParser());
+
+// Configuração do body-parser
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+// Middleware para verificar a autenticação e armazenar o id_cliente globalmente
+app.use((req, res, next) => {
+  console.error('middle:', req.session.userId);
+  if (req.session.userId) {
+    // Se o id_cliente estiver presente na sessão, armazene-o globalmente
+    res.locals.id_cliente = req.session.userId;
+  }
+  
+  next();
+});
+
 // Rotas
-const ingressoRouter = require('./routes/ingressos');
 const loginRouter = require('./routes/login');
+const ingressoRouter = require('./routes/ingressos');
 const eventoRouter = require('./routes/eventos');
-//const perfilRouter = require('./routes/perfil');
 
 app.use('/login', loginRouter);
 app.use('/eventos', eventoRouter);
 app.use('/ingressos', ingressoRouter);
-//app.use('/perfil', perfilRouter);
 
-app.use(cors())
+app.use(cors());
 app.listen(port, () => {
   console.log('Rodando na porta 3000');
-
 });

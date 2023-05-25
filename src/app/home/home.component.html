@@ -23,7 +23,7 @@
         </div>
         <div class="col-2">
             <h3>R$ {{evento.preco}},00</h3>
-            <button type="button" class="btn bg-primario px-5">Comprar</button>
+            <button type="button" (click)="processar_compra(evento.id_evento)" class="btn bg-primario px-5">Comprar</button>
         </div>
     </div>
 </div>

@@ -39,7 +39,7 @@ router.get('/:id_ingresso', async (req, res) => {
     }  
 });
 
-router.post('/teste', async (req, res) => {
+router.post('/qrcode_teste', async (req, res) => {
     const { id_ingresso, tipo } = req.body;
     res.json(await validar_qrcode(id_ingresso, tipo))
 });
@@ -51,7 +51,6 @@ async function validar_qrcode(id_ingresso, tipo) {
     } catch (error) {
         return { status: 500, msg: "O ingresso é inválido", error: error };
     }
-    console.error(ingresso)
     if(tipo == 0 & !ingresso.pago_consumo) {
         return { status: 203, msg: "É necessário pagar o consumo para sair."};
     } else {
@@ -69,35 +68,37 @@ async function generateQRCode(data) {
     return qrCode;
 }
 
-async function processar_compra(id_evento, id_cliente) {
+router.post('/processar_compra', async (req, res) => {
+    const { id_evento } = req.body;
     const token = uuidv4();
+    const id_cliente = 2
     const data = {
       id_evento: id_evento,
-      id_cliente: id_cliente,
+      id_cliente: id_cliente,// res.locals.id_cliente,
       token: token
     };
-  
+    console.error(data)
     try {
       const qr_code = await generateQRCode(JSON.stringify(data));
       const ingresso = await db.one(inserir_ingresso(id_evento, id_cliente, qr_code));
-      return { status: 200, ingresso: ingresso, msg: "Ingresso comprado com sucesso!" };
+      res.json({status: 200, id_ingresso: ingresso.id_ingresso, msg: "Ingresso comprado com sucesso!"});
     } catch (error) {
-      return { status: 500, msg: "Problema para comprar o ingresso.", error: error };
+       res.json({status: 500, msg: "Problema para comprar o ingresso.", error: error});
     }
-  }
+})
 
 //querys
 function buscar_meus_ingressos(id_cliente) {
     return `
         SELECT * FROM ingressos i
-        INNER JOIN eventos e ON i.id_evento = e.id
+        INNER JOIN eventos e ON i.id_evento = e.id_evento
         WHERE id_cliente = ${id_cliente} ORDER BY e.dt_inicio DESC`
 }
 
 function inserir_ingresso(id_evento, id_cliente, qr_code) {
     return {
         text: 'INSERT INTO ingressos(id_evento, id_cliente, qr_code) ' +
-        'VALUES ($1, $2, $3) RETURNING id',
+        'VALUES ($1, $2, $3) RETURNING id_ingresso',
         values: [id_evento, id_cliente, qr_code]
     }    
 }
@@ -105,15 +106,15 @@ function inserir_ingresso(id_evento, id_cliente, qr_code) {
 function buscar_ingresso_por_id(id_ingresso) {
     return `
         SELECT * FROM ingressos i
-        INNER JOIN eventos e ON i.id_evento = e.id
-        WHERE i.id = ${id_ingresso}`
+        INNER JOIN eventos e ON i.id_evento = e.id_evento
+        WHERE i.id_ingresso = ${id_ingresso}`
 }
 
 function validar_ingresso(id_ingresso) {
     return {
-        text: 'SELECT i.id, i.id_evento, i.pago_consumo FROM ingressos i ' +
-        'INNER JOIN eventos e ON i.id_evento = e.id ' +
-        'WHERE i.id = $1 AND e.dt_inicio < CURRENT_TIMESTAMP AND e.dt_fim ' +
+        text: 'SELECT i.id_ingresso, i.id_evento, i.pago_consumo FROM ingressos i ' +
+        'INNER JOIN eventos e ON i.id_evento = e.id_evento ' +
+        'WHERE i.id_ingresso = $1 AND e.dt_inicio < CURRENT_TIMESTAMP AND e.dt_fim ' +
         '> CURRENT_TIMESTAMP AND (hora_saida is null or hora_entrada is null)',
         values: [id_ingresso]
     }
@@ -122,12 +123,12 @@ function validar_ingresso(id_ingresso) {
 function inserir_entrada_saida(id_ingresso, tipo) {
     if(tipo == 0) {
         return {
-            text: 'UPDATE ingressos set hora_entrada = CURRENT_TIMESTAMP where id = $1',
+            text: 'UPDATE ingressos set hora_entrada = CURRENT_TIMESTAMP where id_ingresso = $1',
             values: [id_ingresso]
         }
     } else {
         return {
-            text: 'UPDATE ingressos set hora_saida = CURRENT_TIMESTAMP where id = $1',
+            text: 'UPDATE ingressos set hora_saida = CURRENT_TIMESTAMP where id_ingresso = $1',
             values: [id_ingresso]
         }
     }
